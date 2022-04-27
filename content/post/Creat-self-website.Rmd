@@ -32,8 +32,16 @@ git config --global user.name "你GitHub的名字"
 git config --global user.email 你GitHub的注册邮箱
 例如：comgit config --global user.email janedoe@gmail.com
 
+#全局代理
+git config --global https.proxy http://127.0.0.1:1080
+
+#取消全局代理：
+git config --global --unset http.proxy
+ 
+git config --global --unset https.proxy
+
 #检查配置是否成功
-git config ––list
+git config --global --list
 ```
 
 ![](https://github.com/wangdata/imageshare/blob/main//img/202204272002767.png?raw=true)
