@@ -1,0 +1,102 @@
+---
+title: "如何利用blogdown创建自己的网站"
+author: "Weilu Wang"
+date: "4/27/2022"
+output: html_document
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="最近一直觉得自己工作效率很差有些浑浑噩噩的感觉可能是对自己的要求有些松懈为了整理近期工作中思路给自己一些鞭策决定重新开始撰写工作和学习笔记做这件事情之前首先要建立属于自己的网站查了一些资料推荐使用blogdown作为入门工具" class="section level3">
+<h3>最近一直觉得自己工作效率很差，有些浑浑噩噩的感觉。可能是对自己的要求有些松懈。<strong>为了整理近期工作中思路，给自己一些鞭策，决定重新开始撰写工作和学习笔记。做这件事情之前，首先要建立属于自己的网站。</strong>查了一些资料，推荐使用<a href="https://bookdown.org/yihui/blogdown/">blogdown</a>作为入门工具。</h3>
+<div id="创建github库复制库链接" class="section level4">
+<h4>1. 创建Github库，复制库链接</h4>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204271945851.png?raw=true" /></p>
+</div>
+<div id="在rstudio中创建git工作目录" class="section level4">
+<h4>2. 在RStudio中创建git工作目录</h4>
+<div id="下载git配置" class="section level5">
+<h5>2.1 下载Git，配置</h5>
+<p><a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgit-scm.com%2Fdownload">Git - Downloads (git-scm.com)</a>:</p>
+<pre class="r"><code>配置Git
+win 系统打开 CMD或者Git Bash，代码如下：
+
+git config --global user.name &quot;你GitHub的名字&quot;
+例如：git config --global user.name &quot;Jane Doe&quot;
+
+git config --global user.email 你GitHub的注册邮箱
+例如：git config --global user.email janedoe@gmail.com
+
+#全局代理
+git config --global https.proxy http://127.0.0.1:1080
+
+#取消全局代理：
+git config --global --unset http.proxy
+ 
+git config --global --unset https.proxy
+
+#检查配置是否成功
+git config --global --list</code></pre>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204272002767.png?raw=true" /></p>
+</div>
+<div id="filenew-projectversion-controlgit" class="section level5">
+<h5>2.2 File–New Project–Version Control–Git</h5>
+<div class="figure">
+<img src="https://github.com/wangdata/imageshare/blob/main//img/202204271947052.png?raw=true" alt="" />
+<p class="caption">image-20220427194722968</p>
+</div>
+<div class="figure">
+<img src="https://github.com/wangdata/imageshare/blob/main//img/202204271948948.png?raw=true" alt="" />
+<p class="caption">image-20220427194812884</p>
+</div>
+<p>复制黏贴Github库的链接，creat project。这样就可以创建一个本地的git库。</p>
+</div>
+</div>
+<div id="安装和配置工具" class="section level4">
+<h4>3. 安装和配置工具</h4>
+<div id="安装blogdown和静态网站生成器hugo" class="section level5">
+<h5>3.1 安装blogdown和静态网站生成器<a href="https://themes.gohugo.io/">hugo</a></h5>
+<pre><code>install.packages(&#39;blogdown&#39;)
+
+blogdown::install_hugo()
+#可以升级
+blogdown::update_hugo()
+#安装主题
+blogdown::install_theme(&quot;ahonn/hexo-theme-even&quot;) #任选，自定义，注意主题名需要在Github中寻找
+
+#https://themes.gohugo.io/themes/hugo-theme-even/</code></pre>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204272014317.png?raw=true" /></p>
+</div>
+<div id="链接rstudio-git和github" class="section level5">
+<h5>3.2 链接RStudio, Git和Github</h5>
+<p>这一步非常关键，决定了我们是否可以将本地git文件同步到Github库。</p>
+<p>在RStudio中, 找到 <strong><em>Tools &gt; Global Options &gt; Git/SVN</em></strong>，确认git.exe位于RStudio指定的目录中</p>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204272005560.png?raw=true" /></p>
+<p>创建SSH RSA密钥，在同一RStudio选项窗口中，单击<strong>“Create RSA Key”，完成后单击“Close”。然后还是在这个窗口点击“View public key”</strong>，复制全部数字和字符串。这样就是已经创建了一个属于自己的密钥</p>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204272006835.png?raw=true" /></p>
+<p>将这个密钥提供给GitHub，这样以后在向RStudio中提交更改时，GitHub就会知道自己是谁。</p>
+<p>所以需要<strong>登陆GitHub,点击主页最右侧头像——settings——SSH and GPG keys</strong>（如下面第一张图），不用管GPG key, 只用在SSH keys处点击New SSH keys（显示如下面第二张图），将刚刚在Rstudio创建并复制的密钥粘贴在第二张图片蓝色框框处并点击 Add SSH key。</p>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204272007541.png?raw=true" /></p>
+</div>
+</div>
+<div id="上传git目录文件" class="section level4">
+<h4>4. 上传git目录文件</h4>
+<p>简单的可以通过RStudio中的git插件进行上传，可是我在使用的时候碰到主题无法上传的问题。原因是theme文件数超过100个。因此，只能通过bash窗口上传git目录文件。</p>
+<p>以下是代码</p>
+<pre><code>git add files
+git commit -m &quot;asdf&quot;
+git push origin main
+#可通过force强制上传，覆盖之前的文件。切勿修改系统中host文件。
+git push origin main --force</code></pre>
+<p>至此，我们已经将自己的文件上传至Github的库中。后期可以通过修改content中内容，对网页内容进行修改。</p>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204272020869.png?raw=true" /></p>
+</div>
+<div id="部署自己的网页" class="section level4">
+<h4>5. 部署自己的网页</h4>
+<p>这一步很简单，打开<a href="https://app.netlify.com/sites/weiluwang/overview">Netlif.</a>。Add new site，按步骤操作即可。等待几分钟就可以创建自己域名的网站。</p>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204272023982.png?raw=true" /></p>
+<p><img src="https://github.com/wangdata/imageshare/blob/main//img/202204272024688.png?raw=true" /></p>
+<p>可以在<strong>site setting</strong>中修改域名信息。想拥有自己的独特的域名，可以购买付费服务。</p>
+</div>
+</div>

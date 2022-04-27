@@ -30,7 +30,7 @@ git config --global user.name "你GitHub的名字"
 例如：git config --global user.name "Jane Doe"
 
 git config --global user.email 你GitHub的注册邮箱
-例如：comgit config --global user.email janedoe@gmail.com
+例如：git config --global user.email janedoe@gmail.com
 
 #全局代理
 git config --global https.proxy http://127.0.0.1:1080
@@ -109,7 +109,7 @@ blogdown::install_theme("ahonn/hexo-theme-even") #任选，自定义，注意主
 git add files
 git commit -m "asdf"
 git push origin main
-#可通过force强制上传，覆盖之前的文件
+#可通过force强制上传，覆盖之前的文件。切勿修改系统中host文件。
 git push origin main --force
 ```
 
