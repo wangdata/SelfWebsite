@@ -82,7 +82,7 @@ params:
     - even
   linkToMarkDown: no
   livereUID: ''
-  logoTitle: Wang
+  logoTitle: Weilu Wang
   mathjax: no
   mathjaxEnableAutoNumber: no
   mathjaxEnableSingleDollar: no
@@ -93,7 +93,12 @@ params:
     hint: 30
     warn: 180
   postMetaInFooter: yes
-  publicCDN:
+  logo:
+   alt: Logo
+   height: 50
+   url: /themes/hugo-theme-even/static/img/logo.png
+   width: 50
+   publicCDN:
     enable: yes
     fancyboxCSS: <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css"
       integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
@@ -124,8 +129,8 @@ params:
     timeagoLocalesJS: <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js"
       integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
   reward:
-    alipay: /path/to/your/alipay-qr-code.png
-    enable: no
+    alipay: /themes/hugo-theme-even/static/img/reward/alipay.png
+    enable: yes
     wechat: /path/to/your/wechat-qr-code.png
   sequenceDiagrams:
     enable: no
@@ -135,17 +140,12 @@ params:
   since: '2017'
   social:
     a-email: mailto:weiluwang868@gmail.com
-    b-stack-overflow: http://localhost:1313
-    c-twitter: http://localhost:1313
-    e-linkedin: http://localhost:1313
-    f-google: http://localhost:1313
+    b-stack-overflow: https://stackoverflow.com/
+    c-twitter: https://twitter.com/home
+    e-linkedin: https://www.linkedin.com/feed/?trk=onboarding-landing
+    f-google: https://www.google.com.hk/
     g-github: https://github.com/wangdata/
-    h-weibo: http://localhost:1313
-    i-zhihu: http://localhost:1313
-    j-douban: http://localhost:1313
-    l-tumblr: http://localhost:1313
-    n-gitlab: http://localhost:1313
-    o-bilibili: http://localhost:1313
+    o-bilibili: https://space.bilibili.com/53835479?spm_id_from=333.1007.0.0
   toc: yes
   uglyURLs: no
   utterances:
