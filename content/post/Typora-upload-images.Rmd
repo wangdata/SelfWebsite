@@ -11,24 +11,25 @@ tags:
 - Gitee
 ---
 
-今天一早发现Picgo无法上传图片，报错一直无法解决。加之Github作为图床，在国内的访问速度实在是慢的要死，遂改为使用国内Github版本Gitee。没办法，适者生存。
+***今天一早发现Picgo无法上传图片，报错一直无法解决。加之Github作为图床，在国内的访问速度实在是慢的要死，遂改为使用国内Github版本Gitee。没办法，适者生存。***
 
 #### 创建Gitee
 
 ##### 创建库，一定要绑定手机号才可以设置为公开的库
 
-![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqb5xDYqP9VTsdB2Y0fmlO1MbVEqCstBv90.Kj9yqXO4d52O*8ZSwvZxZGTSWuW6zZBKydS4r6H5tt.6Oz54GG04!/b&bo=EQVCAgAAAAADB3Y!&rf=viewer_4)
+![](https://github.com/wangdata/imageshare/blob/main/img/1.png?raw=true)
 
 ##### 生成token
 
-![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqcukSNwDJMaYd3ytmK8rsnF0PlIKzb2vU6MFjeAAEQfH8lmZpqvQYVzDhh5kEXoqbVVBteUvxtl3ZnSSo72RjRA!/b&bo=.wTVAgAAAAADBwo!&rf=viewer_4)
+![](https://github.com/wangdata/imageshare/blob/main/img/2.png?raw=true)
 
 ##### Picgo图床设置
 
-![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqe.xB4c9iD*d4420zQ*4urxth7T3.GTAf6.I4KxBZHyH4k8MvW2SAql6RNoxM3*qhdMuKEkt2vBdayunifjKKxw!/b&bo=6AM0AgAAAAADB*8!&rf=viewer_4)
+![](https://github.com/wangdata/imageshare/blob/main/img/3.png?raw=true)
 
 ##### 进入typora，偏好设置配置Picgo即可
 
-![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqUMl9I8pbZPO0kJ*2dCX2lz38Sqe9bkxTEdURZCVtze3pLx6Eu2v.6sSputCHzkz25PKDEAzwvosx3ASv.GKQAQ!/b&bo=9wNdAgAAAAADB4k!&rf=viewer_4)
+![](https://github.com/wangdata/imageshare/blob/main/img/4.png?raw=true)
 
-![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqc43JDSfvJYMam0iKKXLQGlno97yGy0lilisk3C5r9Qxq4cZ*yDKzLnRgxpDehp*IrSDOVyY2gIJikPRoeZYG1I!/b&bo=FQPPAQAAAAADB*o!&rf=viewer_4)
+![](https://github.com/wangdata/imageshare/blob/main/img/5.png?raw=true)
+
