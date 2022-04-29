@@ -17,18 +17,18 @@ tags:
 
 ##### 创建库，一定要绑定手机号才可以设置为公开的库
 
-![image-20220429092343614](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290923671.png)
+![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqb5xDYqP9VTsdB2Y0fmlO1MbVEqCstBv90.Kj9yqXO4d52O*8ZSwvZxZGTSWuW6zZBKydS4r6H5tt.6Oz54GG04!/b&bo=EQVCAgAAAAADB3Y!&rf=viewer_4)
 
 ##### 生成token
 
-![image-20220429092816020](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290928087.png)
+![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqcukSNwDJMaYd3ytmK8rsnF0PlIKzb2vU6MFjeAAEQfH8lmZpqvQYVzDhh5kEXoqbVVBteUvxtl3ZnSSo72RjRA!/b&bo=.wTVAgAAAAADBwo!&rf=viewer_4)
 
 ##### Picgo图床设置
 
-![image-20220429092718307](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290927358.png)
+![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqe.xB4c9iD*d4420zQ*4urxth7T3.GTAf6.I4KxBZHyH4k8MvW2SAql6RNoxM3*qhdMuKEkt2vBdayunifjKKxw!/b&bo=6AM0AgAAAAADB*8!&rf=viewer_4)
 
 ##### 进入typora，偏好设置配置Picgo即可
 
-![image-20220429092939391](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290929444.png)
+![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqUMl9I8pbZPO0kJ*2dCX2lz38Sqe9bkxTEdURZCVtze3pLx6Eu2v.6sSputCHzkz25PKDEAzwvosx3ASv.GKQAQ!/b&bo=9wNdAgAAAAADB4k!&rf=viewer_4)
 
-![image-20220429093109737](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290931791.png)
+![](http://m.qpic.cn/psc?/V50zDeMA4NxrVE3Zc53c4GkuDe0Bq6S3/bqQfVz5yrrGYSXMvKr.cqc43JDSfvJYMam0iKKXLQGlno97yGy0lilisk3C5r9Qxq4cZ*yDKzLnRgxpDehp*IrSDOVyY2gIJikPRoeZYG1I!/b&bo=FQPPAQAAAAADB*o!&rf=viewer_4)
