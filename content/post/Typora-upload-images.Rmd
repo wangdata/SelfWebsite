@@ -1,0 +1,34 @@
+---
+title: "Typora upload images"
+author: "Weilu Wang"
+categories:
+- Creat Website
+date: "2022-04-29T01:37:56+08:00"
+draft: false
+lastmod: "2022-04-29T01:37:56+08:00"
+tags:
+- Picgo
+- Gitee
+---
+
+今天一早发现Picgo无法上传图片，报错一直无法解决。加之Github作为图床，在国内的访问速度实在是慢的要死，遂改为使用国内Github版本Gitee。没办法，适者生存。
+
+#### 创建Gitee
+
+##### 创建库，一定要绑定手机号才可以设置为公开的库
+
+![image-20220429092343614](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290923671.png)
+
+##### 生成token
+
+![image-20220429092816020](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290928087.png)
+
+##### Picgo图床设置
+
+![image-20220429092718307](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290927358.png)
+
+##### 进入typora，偏好设置配置Picgo即可
+
+![image-20220429092939391](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290929444.png)
+
+![image-20220429093109737](https://gitee.com/weiluwang868/Imagshare/raw/master/img/202204290931791.png)
