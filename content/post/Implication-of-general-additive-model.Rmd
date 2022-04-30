@@ -14,7 +14,6 @@ tags:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
 ### **一般加性模型的使用**
 
 这两天偶然想起来之前学过的一般加性模型GAM。早先只是走马观花似的浏览了的一下GAM的主要用途，并没有做更多的深究。想到以后大概率还是会用，就重新想到认真的学习一遍。至少可以能够熟练在自己的数据分析中得到很好的应用。
@@ -29,11 +28,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 对于参数回归模型而言，响应变量与自变量之间的关系通常可具化为特定的函数公式来体现。例如在最常见的多元线性回归中，响应变量Y与自变量X之间的函数关系为线性且描述为简单加权和形式：
 
-![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20211018_85374582-2ff4-11ec-9bb3-fa163eb4f6be.png)
+![img](https://github.com/wangdata/imageshare/blob/main//img/202204301808800.png?raw=true)
 
 与上述这种常见的参数回归相比，在非参数化的加性模型中，只设定了可加和性，而并没有对变量关系的函数形式作出假设。以一般加性模型为例，假定响应变量Y服从正态分布，自变量X和响应变量Y的条件均值之间的关系可简单表示为：公式中fn(.)是未指明的函数，需要非参数式地予以估计，“非参数”一词反映了函数fn(.)不是用参数来定义的。总的来说，加性模型放宽了对响应关系加和形式的限制，允许任意函数之和来建模结果，自变量和响应变量之间的关系可以为任意线性或非线性。
 
-![GAM](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20211018_855fddf8-2ff4-11ec-9bb3-fa163eb4f6be.png)
+![GAM](https://github.com/wangdata/imageshare/blob/main//img/202204301808511.png?raw=true)
 
 由于fn(.)并未定义参数，变量关系无法用特定的数学公式来表示。此时，可以通过平滑曲线的图形方式表达自变量和因变量之间的关系。R中也有相应的显著性检验用来判断变量间关系的依赖性是否达到显著水平。
 
