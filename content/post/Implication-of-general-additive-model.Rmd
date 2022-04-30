@@ -1,0 +1,167 @@
+---
+title: "一般加性模型的使用"
+author: "Weilu Wang"
+categories:
+- R statistic model -- GAM
+date: "2022-04-30T01:37:56+08:00"
+draft: false
+lastmod: "2022-04-30T01:37:56+08:00"
+tags:
+- General additive model
+- Agriculture
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **一般加性模型的使用**
+
+这两天偶然想起来之前学过的一般加性模型GAM。早先只是走马观花似的浏览了的一下GAM的主要用途，并没有做更多的深究。想到以后大概率还是会用，就重新想到认真的学习一遍。至少可以能够熟练在自己的数据分析中得到很好的应用。
+
+#### 什么是GAM？
+
+我们在做统计分析时，较多使用的是一般线性模型（LM）或者广义线性模型（GLM）。LM的应用相对简单，但是有其局限性。LM假设自变量x和因变量y之间存在线性关系，如果二者关系非线性，结果的解读会存在较大的问题。非线性关系中，有时候会用到多项式，但是多项式的系数的意义常常难以解释。GLM多应用于非正态分布的数据，例如二项分布，指数分布等。这类分布都可以用GLM加以拟合，结果的解读也相对较好，在农业或生态学等学科有很高的应用。那么，我们为什么还要使用GAM？
+
+加性模型可描述为多元回归的非参数化平滑回归形式。类似一般线性回归和广义线性回归（GLM）的关系，加性模型也常见两种形式，一般加性模型（general additive model）和广义加性模型（generalized additive model，GAM）。类似地，一般加性模型简单易懂，假定响应变量大致服从正态分布时使用。当数据不服从正态分布，可以使用广义加性模型。加性模型是常被用来探索响应变量与自变量之间函数形式的一种较为灵活的工具。在一般加性模型中，假定响应变量服从正态分布，并试图建立自变量与响应变量条件均值的非参数函数的可能形式，使用起来非常灵活。
+
+#### 一般加性模型的定义
+
+对于参数回归模型而言，响应变量与自变量之间的关系通常可具化为特定的函数公式来体现。例如在最常见的多元线性回归中，响应变量Y与自变量X之间的函数关系为线性且描述为简单加权和形式：
+
+![img](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20211018_85374582-2ff4-11ec-9bb3-fa163eb4f6be.png)
+
+与上述这种常见的参数回归相比，在非参数化的加性模型中，只设定了可加和性，而并没有对变量关系的函数形式作出假设。以一般加性模型为例，假定响应变量Y服从正态分布，自变量X和响应变量Y的条件均值之间的关系可简单表示为：公式中fn(.)是未指明的函数，需要非参数式地予以估计，“非参数”一词反映了函数fn(.)不是用参数来定义的。总的来说，加性模型放宽了对响应关系加和形式的限制，允许任意函数之和来建模结果，自变量和响应变量之间的关系可以为任意线性或非线性。
+
+![GAM](https://oss-emcsprod-public.modb.pro/wechatSpider/modb_20211018_855fddf8-2ff4-11ec-9bb3-fa163eb4f6be.png)
+
+由于fn(.)并未定义参数，变量关系无法用特定的数学公式来表示。此时，可以通过平滑曲线的图形方式表达自变量和因变量之间的关系。R中也有相应的显著性检验用来判断变量间关系的依赖性是否达到显著水平。
+
+#### GAM在R中的实现
+
+我们使用agridat内置的lasrosas.corn数据集，该数据集包含了玉米产量对不同的氮肥的响应情况。
+
+```
+library(agridat)
+
+attach(lasrosas.corn)
+describer::describe(lasrosas.corn) #数据描述性分析
+```
+
+![image-20220430171500799](https://github.com/wangdata/imageshare/blob/main//img/202204301715012.png?raw=true)
+
+##### 单变量分析示例
+
+我们简单看一下玉米产量对施肥量的响应情况。分析前，我们假设产量服从正态分布。mgcv包中执行加性模型的函数是gam()，默认情况下其执行一般加性模型。gam()拟合变量时，对于各自变量需要设置平滑器类型，以拟合响应变量和自变量的局部平滑，例如s()将平滑器指定为样条平滑。
+
+注意：结果的解读需要依赖生物学知识。
+
+```
+library(mgcv)
+ 
+#避免多年度、多地区间数据混乱，选取 1999 年的 W 地区玉米田的数据为例进行后续分析
+lasrosas.corn.select <- subset(lasrosas.corn, year == 1999 & topo == 'W')
+ 
+#此处以一般加性模型为例，拟合玉米产量与施加氮肥浓度的平滑回归
+#需要在 gam() 函数中指定自变量的局部平滑器类型，如 s() 的样条平滑、lo() 的 LOESS 平滑等
+#详情 ?gam、?s、?lo 等
+ 
+#以样条平滑为例，实现响应变量与自变量的局部平滑拟合
+#s() 中，参数 k 可用于指定平滑程度，值越小约趋于线性平滑，越高扭动越厉害，参考以下示例
+fit1_k3 <- gam(yield~s(nitro, k = 3), data = lasrosas.corn.select)
+summary(fit1_k3)  #检验自变量的显著性以及评估回归整体的方差解释率
+ 
+fit1_k5 <- gam(yield~s(nitro, k = 5), data = lasrosas.corn.select)
+summary(fit1_k5)  #检验自变量的显著性以及评估回归整体的方差解释率
+ 
+fit1_k6 <- gam(yield~s(nitro, k = 6), data = lasrosas.corn.select)
+summary(fit1_k6)  #检验自变量的显著性以及评估回归整体的方差解释率
+ 
+#平滑回归曲线图，默认显示 95% 置信区间
+par(mfrow = c(2, 3))
+plot(fit1_k3)
+plot(fit1_k5)
+plot(fit1_k6)
+plot(fit1_k3, select = 1, pch = 20, se = TRUE, rug = TRUE, residuals = TRUE)
+plot(fit1_k5, select = 1, pch = 20, se = TRUE, rug = TRUE, residuals = TRUE)
+plot(fit1_k6, select = 1, pch = 20, se = TRUE, rug = TRUE, residuals = TRUE)
+```
+
+![image-20220430171914212](https://github.com/wangdata/imageshare/blob/main//img/202204301719001.png?raw=true)
+
+加性模型有助于我们通过探索性分析，发现变量之间的潜在关系，然后进一步使用参数化模型进行描述。也有一些文献直接使用GAM对变量关系做统计分析。适合自己的就好。R中提供了GAM的模型检验方法。
+
+```
+#检验自变量的显著性以及评估回归整体的方差解释率
+summary(fit1_k5)
+
+R2理解为模型拟合值对响应变量的方差解释率。
+```
+
+![image-20220430172354443](https://github.com/wangdata/imageshare/blob/main//img/202204301723425.png?raw=t)
+
+##### 多变量分析
+
+接下来我们考虑多个变量对玉米产量的影响
+
+```
+#类似多元回归方法，以 + 相连各自变量，表示加和效应，详情 ?gam
+#对于各自变量，都需要指定局部平滑器类型，如这里统一为 s() 的样条平滑，详情 ?s()
+#各自变量允许设置各自不同的平滑参数，如下示例
+fit2_k3_k5 <- gam(yield~s(nitro, k = 3) + s(bv, k = 5), data = lasrosas.corn.select)
+summary(fit2_k3_k5)  #检验自变量的显著性以及评估回归整体的方差解释率
+ 
+fit2_k5_k10 <- gam(yield~s(nitro, k = 5) + s(bv, k = 10), data = lasrosas.corn.select)
+summary(fit2_k5_k10)  #检验自变量的显著性以及评估回归整体的方差解释率
+ 
+#平滑回归曲线图，默认显示 95% 置信区间
+#多变量时，通过 select 选择第 n 个自变量展示和响应变量的回归曲线
+par(mfrow = c(2, 2))
+plot(fit2_k3_k5, select = 1, pch = 20, se = TRUE, rug = TRUE, residuals = TRUE)
+plot(fit2_k3_k5, select = 2, pch = 20, se = TRUE, rug = TRUE, residuals = TRUE)
+plot(fit2_k5_k10, select = 1, pch = 20, se = TRUE, rug = TRUE, residuals = TRUE)
+plot(fit2_k5_k10, select = 2, pch = 20, se = TRUE, rug = TRUE, residuals = TRUE)
+```
+
+![image-20220430172918626](https://github.com/wangdata/imageshare/blob/main//img/202204301729381.png?raw=t)
+
+同上文，平滑参数值的选择会强烈影响结果，有时候不同输出会导致不同的解释，因此平滑参数值的选择需谨慎。多变量的情况中，最好在事先分别对每个变量拟合回归，结合实际情况考察生物学意义有效的平滑曲线程度的选择，并将它代入之多变量回归中。此外还需注意，尽管平滑曲线图显示yield 和bv之间似乎是线性的，更改局部平滑器函数s()中平滑参数k的值后的曲线也未发生较大程度改变，但结合图中变量数值的分布特征，也不难看出这是由于响应变量在自变量某区段内过于集中产生的“伪线性”现象。实际中仍存在较大的离散度，应当谨慎对待。
+
+~~~
+#检验自变量的显著性以及评估回归整体的方差解释率
+summary(fit2_k5_k10)
+~~~
+
+![image-20220430173249130](https://github.com/wangdata/imageshare/blob/main//img/202204301732301.png?raw=t)
+
+##### 考虑交互作用的GAM
+
+在GAM中考虑因子之间的交互作用，需要将交互项加入到平滑器函数s()中。
+
+```
+#在上文的氮肥浓度、土壤有机物含量对玉米产量影响的二元回归的基础上
+#继续考虑加入氮肥浓度和土壤有机物含量的交互效应
+ 
+#直接在同一个平滑器内部输入所考虑交互效应的两自变量
+#本示例使用样条平滑 s()，此时两自变量需统一设置平滑参数
+fit2_inter <- gam(yield~s(nitro, bv, k = 5), data = lasrosas.corn.select)
+summary(fit2_inter)
+ 
+#二维平面等高线图和三维图，详情 ?vis.gam
+par(mfrow = c(1, 2))
+vis.gam(fit2_inter, color = 'cm', plot.type = 'contour')
+points(lasrosas.corn.select$nitro, lasrosas.corn.select$bv, pch = 16)
+vis.gam(fit2_inter, color = 'cm', theta = 30)
+
+summary(fit2_inter)
+```
+
+![image-20220430174436969](https://github.com/wangdata/imageshare/blob/main//img/202204301744394.png?raw=t)
+
+![image-20220430174327396](https://github.com/wangdata/imageshare/blob/main//img/202204301743529.png?raw=t)
+
+注意k不要设置的太大，可能会影响到生物意义的解读
+
+**下一节，我们用一篇文献解决GAM在生态学中的应用。**
+
+致谢：https://www.modb.pro/db/137846
