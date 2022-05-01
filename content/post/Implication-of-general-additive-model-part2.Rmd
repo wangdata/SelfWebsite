@@ -1,0 +1,42 @@
+---
+title: "一般加性模型的使用 part2"
+author: "Weilu Wang"
+categories:
+- R statistic model -- GAM
+date: "2022-05-01T01:37:56+08:00"
+draft: false
+lastmod: "2022-05-01T01:37:56+08:00"
+tags:
+- General additive model
+- Agriculture
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### 一般加性模型的使用 part2
+
+上一节，我们对一般加性模型GAM做了简单的介绍。本节，我们通过一个例子，更清楚的知晓GAM的用途。因为我做的内容和气象有一些关系，文献找的是一篇关于气候变化与城市污染之间的关系。具体可以看原文[Quantifying the inﬂuence of local meteorology on air quality using generalized additive models](http://dx.doi.org/10.1016/j.atmosenv.2010.11.051)。这篇文献主旨蛮简单的，目的就是通过GAM建模，探究气候变化因子（温度，太阳辐射，降雨，水汽压等）对空气污染（臭氧，PM10和氧化亚氮）的影响。我们不关注具体的数据来源，只关心GAM建模的方法。
+
+原文中的Methods介绍了GAM的建模过程。先是对GAM一顿赞美输出，要不怎么说明自己方法的可靠性了。作者第一步对不同的空气污染物单独建模，目的是要控制由于季节性，空间时间以及周期性的波动，去伪存真。
+
+![](https://github.com/wangdata/imageshare/blob/main//img/202205011733830.png?raw=t)
+
+time 代表由年际和季节波动的日数（1 and 2922），dow是0 到 6 代表周期因子, long和lat是经纬度造成的空间波动， yi-1表征短期的时空连续性，one day lag。残差的空间变异通过经纬度张量积和时空连续性控制。time中的k元素设置为32，代表控制不同研究周期的四个季节。
+
+最终的模型通过在上述模型中向前添加气候因子，然后基于赤则信息标注AIC确定最终模型，如下
+
+![](https://github.com/wangdata/imageshare/blob/main//img/202205011743071.png?raw=t)
+
+temp代表日最高温都，u和v代表纬向和径向的风速，wvp代表水汽压，rad代表太阳辐射，precip代表降雨量以及blh代表边界层高度。
+
+那么，我们如何评价GAM建模的效果了？文章中用的R2，通过方差解释率确定气象因子对空气污染物的影响程度。那么单独气象因子的效应是通过部分响应图和边际效应作为评价指标。边际效应评价指标公式为100 * [exp(s(x)) -1]其中s(x)是GAM公式中的平滑函数。
+
+结果如下
+
+![](https://github.com/wangdata/imageshare/blob/main//img/202205011759836.png?raw=t)
+
+marginal effects是通过上述公式计算的，而后x作为横坐标，绘制部分响应图。从图中我们可以看到，温度，WVP，辐射对臭氧都有明显的影响。温度对臭氧的边际效应最大，数值为150%。其余部分可以做类似的解释。
+
+mgcv出图并不美观，需要修改图形可以参考[链接](https://cran.r-project.org/web/packages/mgcViz/vignettes/mgcviz.html)
